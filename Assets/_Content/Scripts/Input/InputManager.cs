@@ -10,12 +10,21 @@ namespace _Content.Scripts.Input
 		private void Awake()
 		{
 			inputSettings = new InputSettings();
-			inputSettings.Player.Enable();
 		}
 
 		private void Start()
 		{
 			SetCursorState(true);
+			EnablePlayerInput(true);
+			inputSettings.UI.Enable();
+		}
+
+		public void EnablePlayerInput(bool on)
+		{
+			if (on)
+				inputSettings.Player.Enable();
+			else
+				inputSettings.Player.Disable();
 		}
 
 		public Vector2 GetMovement()
@@ -31,6 +40,11 @@ namespace _Content.Scripts.Input
 		public bool IsJumpTriggered()
 		{
 			return inputSettings.Player.Jump.WasPressedThisFrame();
+		}
+		
+		public bool IsUseTriggered()
+		{
+			return inputSettings.Player.Use.WasPressedThisFrame();
 		}
 
 		public bool IsRunPressed()
@@ -52,13 +66,13 @@ namespace _Content.Scripts.Input
 		{
 			return inputSettings.Player.Crouch.WasPressedThisFrame();
 		}
-		
-		private void OnApplicationFocus(bool hasFocus)
-		{
-			SetCursorState(true);
-		}
 
-		private void SetCursorState(bool newState)
+		public bool IsPauseTriggered()
+		{
+			return inputSettings.UI.Pause.WasPressedThisFrame();
+		}
+		
+		public void SetCursorState(bool newState)
 		{
 			Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
 		}
