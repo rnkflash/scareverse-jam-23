@@ -5,11 +5,11 @@ namespace _Content.Scripts.Interaction
 {
     public class InteractableObject: MonoBehaviour
     {
-        [SerializeField] private UnityEvent onInteract;
+        [SerializeField] private UnityEvent<Interactor> onInteract;
 
-        public void Interact()
+        public void Interact(Interactor interactor)
         {
-            onInteract?.Invoke();
+            onInteract?.Invoke(interactor);
         }
     }
 }

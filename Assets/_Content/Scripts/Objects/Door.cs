@@ -59,13 +59,15 @@ namespace _Content.Scripts.Objects
             {
                 isClosing = true;
                 isOpening = false;
-                audioSource.PlayOneShot(closeSound);
+                audioSource.clip = closeSound;
+                audioSource.Play();
             }
             else
             {
                 isClosing = false;
                 isOpening = true;
-                audioSource.PlayOneShot(openSound);
+                audioSource.clip = openSound;
+                audioSource.Play();
             }
 
             doorOpen = !doorOpen;

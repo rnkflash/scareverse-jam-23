@@ -19,6 +19,11 @@ namespace _Content.Scripts.Interaction
             input = GetComponent<InputManager>();
         }
 
+        public Camera GetCamera()
+        {
+            return camera;
+        }
+
         void Update()
         {
             if (Physics.Raycast(camera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f)), camera.transform.forward, out RaycastHit hit, rayDistance))
@@ -37,13 +42,12 @@ namespace _Content.Scripts.Interaction
                 ClearItem();
             
             if (input.IsUseTriggered())
-                currentInteractableObject?.Interact();
+                currentInteractableObject?.Interact(this);
         }
         
         private void ClearItem()
         {
-            if (currentInteractableObject == null) return;
-            currentInteractableObject = null;
+            currentInteractableObject = null;    
             HighlightCrosshair(false);
         }
 
