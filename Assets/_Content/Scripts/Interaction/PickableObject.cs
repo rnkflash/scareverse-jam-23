@@ -9,6 +9,7 @@ namespace _Content.Scripts.Interaction
     public class PickableObject : MonoBehaviour
     {
         public Item item;
+        public int count = 1;
 
         public void PickUp(Interactor interactor)
         {
@@ -36,6 +37,7 @@ namespace _Content.Scripts.Interaction
             if (item != null)
             {
                 SoundManager.Instance.PlaySound(item.pickUpSound);
+                PlayerInventory.Instance.AddItem(item, count);
             }
         }
     }

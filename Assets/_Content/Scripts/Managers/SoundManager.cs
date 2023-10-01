@@ -49,6 +49,9 @@ namespace _Content.Scripts.Managers
         {
 	        if (clip == musicAudioSource.clip) return;
 	        
+	        if (musicCoroutine != null)
+		        StopCoroutine(musicCoroutine);
+	        
 	        musicCoroutine = SwitchTrack(clip);
 	        StartCoroutine(musicCoroutine);
         }
